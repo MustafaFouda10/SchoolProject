@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Infrastructure.ApplicationDBContext;
+using SchoolProject.Infrastructure.AppDBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-#region Connect To SQL Server
+#region Connection To SQL Server
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
