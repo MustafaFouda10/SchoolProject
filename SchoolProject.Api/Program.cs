@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SchoolProject.Core;
+using SchoolProject.Infrastructure;
 using SchoolProject.Infrastructure.AppDBContext;
+using SchoolProject.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,12 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
 });
 
+#endregion
+
+#region Registration of Repos/Services/OtherClasses related to Dependency Injection
+builder.Services.AddInfrastructureDependencies()  // Repositories Registeration
+                .AddServiceDependencies() // Services Registeration
+                .AddCoreDependencies(); // Mediator Registeration
 #endregion
 
 var app = builder.Build();
