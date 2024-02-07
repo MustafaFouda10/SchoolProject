@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Students.Queries.DTOs;
 using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Data.Entities;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
-    public class StudentHandler : IRequestHandler<GetStudentsListQuery, List<GetStudentsListDto>>
+    public class StudentHandler :ResponseHandler, IRequestHandler<GetStudentsListQuery, Response<List<GetStudentsListDto>>>
     {
         // Controller -> Mediator(IRequest<TResponse> -> IRequestHandler<TRequest,TResponse>) -> Service -> Repository -> DBContext -> DB
 
@@ -32,12 +33,11 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         #endregion
 
         #region Methods
-        public async Task<List<GetStudentsListDto>> Handle(GetStudentsListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetStudentsListDto>>> Handle(GetStudentsListQuery request, CancellationToken cancellationToken)
         {
             var studentsList = await _studentService.GetStudentsListAsync();
             var studentsListMapper =  _mapper.Map<List<GetStudentsListDto>>(studentsList);
-            return studentsListMapper;
-
+            return Success(studentsListMapper); // Success<T> --> will receive the response from service and turn it into a Reponse<T>
         }
         #endregion
 
