@@ -35,13 +35,15 @@ namespace SchoolProject.Core.Bases
             };
         }
 
-        public Response<T> UnAuthorized<T>()
+        public Response<T> Created<T>(T entity, object meta = null)
         {
             return new Response<T>()
             {
-                StatusCode = System.Net.HttpStatusCode.Unauthorized, //401
+                Data = entity,
+                Meta = meta,
+                StatusCode = System.Net.HttpStatusCode.Created, //201
                 Succeeded = true,
-                Message = "Unauthorized"
+                Message = "Created"
             };
         }
 
@@ -55,6 +57,16 @@ namespace SchoolProject.Core.Bases
             };
         }
 
+        public Response<T> UnAuthorized<T>()
+        {
+            return new Response<T>()
+            {
+                StatusCode = System.Net.HttpStatusCode.Unauthorized, //401
+                Succeeded = true,
+                Message = "Unauthorized"
+            };
+        }
+
         public Response<T> NotFound<T>(string message = null)
         {
             return new Response<T>()
@@ -62,18 +74,6 @@ namespace SchoolProject.Core.Bases
                 StatusCode = System.Net.HttpStatusCode.NotFound, //404
                 Succeeded = false,
                 Message = message == null ? "Not Found" : message
-            };
-        }
-
-        public Response<T> Created<T>(T entity, object meta = null)
-        {
-            return new Response<T>()
-            {
-                Data = entity,
-                Meta = meta,
-                StatusCode = System.Net.HttpStatusCode.Created, //201
-                Succeeded = true,
-                Message = "Created"
             };
         }
 

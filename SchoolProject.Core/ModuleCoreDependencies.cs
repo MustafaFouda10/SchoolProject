@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SchoolProject.Service.IServices;
-using SchoolProject.Service.Services;
 using System.Reflection;
 
 namespace SchoolProject.Core

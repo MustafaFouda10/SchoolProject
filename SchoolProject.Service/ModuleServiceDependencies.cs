@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SchoolProject.Infrastructure.IRepositories;
-using SchoolProject.Infrastructure.Repositories;
-using SchoolProject.Service.IServices;
-using SchoolProject.Service.Services;
+using SchoolProject.Service.Service.IServices;
+using SchoolProject.Service.Service.Services;
 
 namespace SchoolProject.Service
 {

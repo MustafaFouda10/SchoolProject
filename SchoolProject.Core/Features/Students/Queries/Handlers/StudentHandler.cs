@@ -4,7 +4,7 @@ using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Students.Queries.DTOs;
 using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Data.Entities;
-using SchoolProject.Service.IServices;
+using SchoolProject.Service.Service.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
