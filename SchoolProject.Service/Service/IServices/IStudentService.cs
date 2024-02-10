@@ -10,6 +10,7 @@ namespace SchoolProject.Service.Service.IServices
     public interface IStudentService
     {
         public Task<List<Student>> GetStudentsListAsync();
+        public Task<Student> GetStudentByIdAsync(int id);
 
     }
 }

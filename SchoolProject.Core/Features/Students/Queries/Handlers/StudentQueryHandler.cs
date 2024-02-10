@@ -13,7 +13,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
-    public class StudentHandler :ResponseHandler, IRequestHandler<GetStudentsListQuery, Response<List<GetStudentsListDto>>>
+    public class StudentQueryHandler : ResponseHandler
+                                      ,IRequestHandler<GetStudentsListQuery, Response<List<GetStudentsListDto>>>
+                                      ,IRequestHandler<GetStudentByIdQuery, Response<GetStudentByIdDto>>
     {
         // Controller -> Mediator(IRequest<TResponse> -> IRequestHandler<TRequest,TResponse>) -> Service -> Repository -> DBContext -> DB
 
@@ -24,7 +26,7 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         #endregion
 
         #region Constructors
-        public StudentHandler(IStudentService studentService, IMapper mapper)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper)
         {
             _studentService = studentService;
             _mapper = mapper;
@@ -38,6 +40,16 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             var studentsList = await _studentService.GetStudentsListAsync();
             var studentsListMapper =  _mapper.Map<List<GetStudentsListDto>>(studentsList);
             return Success(studentsListMapper); // Success<T> --> will receive the response from service and turn it into a Reponse<T>
+        }
+
+        public async Task<Response<GetStudentByIdDto>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
+        {
+            var student = await _studentService.GetStudentByIdAsync(request.Id);
+            if(student == null)
+                return NotFound<GetStudentByIdDto>();
+
+            var studentMapper = _mapper.Map<GetStudentByIdDto>(student);
+            return Success(studentMapper);
         }
         #endregion
 

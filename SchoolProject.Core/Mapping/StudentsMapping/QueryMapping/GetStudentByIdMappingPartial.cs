@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using SchoolProject.Core.Features.Students.Queries.DTOs;
+﻿using SchoolProject.Core.Features.Students.Queries.DTOs;
 using SchoolProject.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,13 +10,12 @@ namespace SchoolProject.Core.Mapping.StudentsMapping
 {
     public partial class StudentProfilePartial
     {
-        public void GetStudentsListMapping()
+        public void GetStudentByIdMapping()
         {
-            CreateMap<Student, GetStudentsListDto>()
+            CreateMap<Student, GetStudentByIdDto>()
                 .ForMember(stdListDto => stdListDto.DepartmentName,
                 src => src.MapFrom(std => std.Department.DName)); // to get department name instead of department id.
 
         }
-
     }
 }

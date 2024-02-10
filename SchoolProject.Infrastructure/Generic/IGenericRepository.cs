@@ -17,7 +17,7 @@ namespace SchoolProject.Infrastructure.Generic
         
         Task<T> GetByIdAsync(int id);
         IQueryable<T> GetTableAsTracking();
-        IQueryable<T> GetTableNoTracking();
+        IQueryable<T> GetTableAsNoTracking();
         Task<T> AddAsync(T entity);
         Task AddRangeAsync(ICollection<T> entities);
         Task UpdateAsync(T entity);

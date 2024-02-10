@@ -33,7 +33,7 @@ namespace SchoolProject.Infrastructure.Generic
             return _dbContext.Set<T>().AsQueryable();
         }
 
-        public IQueryable<T> GetTableNoTracking()
+        public IQueryable<T> GetTableAsNoTracking()
         {
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
